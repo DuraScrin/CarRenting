@@ -39,7 +39,6 @@
         <section class="hero container">
             <span class="hero-badge">Fast. Flexible. Reliable.</span>
             <h1 class="hero-title">Rent the Right Car for Every Journey</h1>
-            <p class="hero-subtitle">Choose from city cars, family SUVs, and premium models at transparent prices.</p>
         </section>
 
         <section class="searchsection container">
