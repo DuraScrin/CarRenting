@@ -96,7 +96,6 @@
         <section class="container gallery-section">
             <div class="section-heading">
                 <h2 class="section-title">Our Cars</h2>
-                <p class="section-subtitle">Browse the vehicles currently available in our fleet.</p>
             </div>
 
             <?php if (!empty($carImages)): ?>
@@ -121,11 +120,6 @@
                     <p>No car images found yet. Upload images to <code>public_html/images</code> to show them here.</p>
                 </div>
             <?php endif; ?>
-        </section>
-
-        <section class="container actions-row">
-            <a href="/cars" class="btn btn-primary">View Available Cars</a>
-            <a href="/booking" class="btn btn-ghost">Make a Booking</a>
         </section>
 
         <section class="container highlights-grid">
