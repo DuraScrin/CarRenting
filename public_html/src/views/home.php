@@ -10,15 +10,29 @@
     <?php include __DIR__ . '/layouts/header.php'; ?>
     <?php
     $imageDirectory = __DIR__ . '/../../images';
-    $imagePatterns = ['*.jpg', '*.jpeg', '*.png', '*.webp', '*.gif'];
-    $carImages = [];
+    $imageExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+    $carImages = []; // ['brand' => string, 'file' => string, 'webPath' => string]
 
-    foreach ($imagePatterns as $pattern) {
-        $files = glob($imageDirectory . '/' . $pattern) ?: [];
-        $carImages = array_merge($carImages, $files);
+    $brandDirs = glob($imageDirectory . '/*', GLOB_ONLYDIR) ?: [];
+    sort($brandDirs);
+
+    foreach ($brandDirs as $brandDir) {
+        $brand = basename($brandDir);
+        foreach ($imageExtensions as $ext) {
+            foreach (glob($brandDir . '/*.' . $ext) ?: [] as $file) {
+                // skip blueprint images — those are for the details page
+                if (stripos(basename($file), 'blueprint') !== false) {
+                    continue;
+                }
+                $carImages[] = [
+                    'brand'   => $brand,
+                    'file'    => basename($file),
+                    'webPath' => '/images/' . $brand . '/' . basename($file),
+                ];
+                break 2; // one homepage image per brand
+            }
+        }
     }
-
-    sort($carImages);
     ?>
 
     <main class="home-main">
@@ -94,14 +108,13 @@
 
             <?php if (!empty($carImages)): ?>
                 <div class="car-gallery">
-                    <?php foreach ($carImages as $imagePath): ?>
+                    <?php foreach ($carImages as $car): ?>
                         <?php
-                        $fileName = basename($imagePath);
-                        $title = ucwords(str_replace(['-', '_'], ' ', pathinfo($fileName, PATHINFO_FILENAME)));
+                        $title = ucwords(str_replace(['-', '_'], ' ', pathinfo($car['file'], PATHINFO_FILENAME)));
                         ?>
                         <article class="car-card card">
                             <div class="car-card-media">
-                                <img src="/images/<?php echo htmlspecialchars($fileName, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>">
+                                <img src="<?php echo htmlspecialchars($car['webPath'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>">
                                 <span class="car-status-badge is-unavailable">Unavailable</span>
                             </div>
                             <div class="car-card-body">
