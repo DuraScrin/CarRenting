@@ -1,0 +1,18 @@
+# Dependencies
+vendor/
+
+# Environment config
+.env
+
+# Deploy artifacts
+deploy/dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# PHP logs
+*.log
+error_log

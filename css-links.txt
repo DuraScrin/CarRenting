@@ -1,0 +1,2 @@
+https://static.europcar.com/_nuxt/css/1bca30c.css
+https://static.europcar.com/_nuxt/css/ff2f229.css
