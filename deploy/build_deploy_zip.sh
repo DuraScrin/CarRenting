@@ -11,7 +11,6 @@ rm -rf "$PACKAGE_DIR"
 mkdir -p "$PACKAGE_DIR/public_html"
 
 cp -a "$PROJECT_ROOT/public_html/." "$PACKAGE_DIR/public_html/"
-cp -a "$PROJECT_ROOT/src" "$PACKAGE_DIR/src"
 cp -a "$PROJECT_ROOT/database" "$PACKAGE_DIR/database"
 
 if [[ -f "$PROJECT_ROOT/.env.example" ]]; then
