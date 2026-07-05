@@ -472,6 +472,17 @@ a {
     padding: var(--space-4);
 }
 
+.detail-top-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    align-items: start;
+}
+
+.detail-copy-column {
+    min-width: 0;
+}
+
 .detail-meta {
     margin: 0 0 var(--space-3);
     color: var(--ink-700);
@@ -485,6 +496,18 @@ a {
     overflow: hidden;
     background: #ffffff;
     border: 1px solid var(--ink-200);
+}
+
+.detail-top-grid .detail-image-wrap {
+    margin-top: 0;
+    width: 100%;
+    max-width: none;
+    justify-self: stretch;
+}
+
+.detail-top-grid .detail-main-image {
+    max-height: none;
+    aspect-ratio: 16 / 9;
 }
 
 .detail-main-image {
@@ -697,5 +720,17 @@ a {
 
     .booking-form-lock {
         grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 560px) {
+    .detail-top-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-top-grid .detail-image-wrap {
+        max-width: 100%;
+        justify-self: stretch;
     }
 }

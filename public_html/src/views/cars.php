@@ -6,17 +6,17 @@ $imageExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
 $cars = [];
 
 $brandPrices = [
-    'ford' => 79,
-    'mercedes' => 129,
-    'opel' => 59,
-    'peugeot' => 49,
-    'volkswagen' => 89,
+    'ford' => 55,
+    'mercedes' => 55,
+    'opel' => 55,
+    'peugeot' => 55,
+    'volkswagen' => 55,
 ];
 
 $brandDescriptions = [
     'ford' => 'Reliable and practical for everyday travel and weekend trips.',
-    'mercedes' => 'Comfort-focused premium rental with extra space and refinement.',
-    'opel' => 'Affordable city-friendly option that is easy to park and drive.',
+    'mercedes' => 'Mercedes Sprinter van with 7.5 m3 cargo volume, ideal for larger loads.',
+    'opel' => 'Opel Corsa compact automatic, practical for city use with A/C and easy handling.',
     'peugeot' => 'Compact and efficient choice for urban rides and short journeys.',
     'volkswagen' => 'Balanced all-rounder with smart features and a smooth drive.',
 ];
@@ -101,4 +101,4 @@ usort($cars, static function (array $left, array $right): int {
 
     <?php include __DIR__ . '/layouts/footer.php'; ?>
 </body>
-</html><!DOCTYPE html>
+</html>
