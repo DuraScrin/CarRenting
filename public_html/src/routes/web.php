@@ -31,4 +31,8 @@ $router->get('/', function (): void {
 	require __DIR__ . '/../views/home.php';
 });
 
+$router->get('/car', function (): void {
+	require __DIR__ . '/../views/car-details.php';
+});
+
 return $router;

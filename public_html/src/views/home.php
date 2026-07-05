@@ -102,16 +102,20 @@
                     <?php foreach ($carImages as $car): ?>
                         <?php
                         $title = ucwords(str_replace(['-', '_'], ' ', pathinfo($car['file'], PATHINFO_FILENAME)));
+                        $slug = pathinfo($car['file'], PATHINFO_FILENAME);
+                        $carUrl = '/car?car=' . rawurlencode($slug);
                         ?>
-                        <article class="car-card card">
-                            <div class="car-card-media">
-                                <img src="<?php echo htmlspecialchars($car['webPath'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>">
-                                <span class="car-status-badge is-unavailable">Unavailable</span>
-                            </div>
-                            <div class="car-card-body">
-                                <h3><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></h3>
-                            </div>
-                        </article>
+                        <a class="car-card-link" href="<?php echo htmlspecialchars($carUrl, ENT_QUOTES, 'UTF-8'); ?>">
+                            <article class="car-card card">
+                                <div class="car-card-media">
+                                    <img src="<?php echo htmlspecialchars($car['webPath'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>">
+                                    <span class="car-status-badge is-unavailable">Unavailable</span>
+                                </div>
+                                <div class="car-card-body">
+                                    <h3><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></h3>
+                                </div>
+                            </article>
+                        </a>
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
