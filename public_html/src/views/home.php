@@ -86,13 +86,6 @@
                         </select>
                     </div>
 
-                    <div class="checkbox">
-                        <input type="checkbox" id="differentLocation" name="different_location" value="1">
-                        <label for="differentLocation">
-                            Return to a different location
-                        </label>
-                    </div>
-
                     <button type="submit">
                         Search
                     </button>
