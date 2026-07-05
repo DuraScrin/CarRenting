@@ -208,6 +208,121 @@ a {
     filter: brightness(1.04);
 }
 
+.booking-page {
+    position: relative;
+}
+
+.booking-shell {
+    position: relative;
+    margin-top: var(--space-5);
+    padding: 0;
+    overflow: hidden;
+}
+
+.booking-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+    background: rgba(15, 23, 19, 0.72);
+    backdrop-filter: blur(2px);
+}
+
+.booking-modal-panel {
+    width: min(560px, 100%);
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--ink-200);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    padding: var(--space-4);
+    text-align: center;
+}
+
+.booking-modal-title {
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.35;
+}
+
+.booking-form-wrap {
+    padding: var(--space-4);
+}
+
+.booking-request-form {
+    margin-top: var(--space-3);
+}
+
+.booking-form-lock {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+}
+
+.booking-form-lock .field.full {
+    grid-column: 1 / -1;
+}
+
+.booking-form-lock .field {
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-form-lock label {
+    color: var(--ink-700);
+    font-size: 0.82rem;
+    margin-bottom: 0.42rem;
+}
+
+.booking-form-lock input,
+.booking-form-lock select,
+.booking-form-lock textarea {
+    width: 100%;
+    min-height: 42px;
+    border: 1px solid var(--ink-200);
+    border-radius: var(--radius-md);
+    background: var(--paper);
+    color: var(--ink-900);
+    padding: 0.56rem 0.7rem;
+    font: inherit;
+}
+
+.booking-form-lock textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.booking-form-lock button {
+    grid-column: 1 / -1;
+    min-height: 44px;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: linear-gradient(180deg, var(--brand-600), var(--brand-700));
+    color: var(--paper);
+    font-weight: 700;
+    cursor: not-allowed;
+}
+
+.booking-form-lock:disabled {
+    opacity: 1;
+}
+
+.booking-form-lock *:disabled {
+    opacity: 0.92;
+    cursor: not-allowed;
+}
+
+.booking-form-lock input:disabled,
+.booking-form-lock select:disabled,
+.booking-form-lock textarea:disabled {
+    background: #f8faf8;
+    color: var(--ink-500);
+}
+
 .actions-row {
     margin-top: var(--space-4);
     display: flex;
@@ -561,6 +676,10 @@ a {
     }
 
     .car-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-form-lock {
         grid-template-columns: 1fr;
     }
 }

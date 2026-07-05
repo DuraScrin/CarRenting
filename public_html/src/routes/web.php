@@ -39,4 +39,8 @@ $router->get('/cars', function (): void {
 	require __DIR__ . '/../views/cars.php';
 });
 
+$router->get('/booking', function (): void {
+	require __DIR__ . '/../views/booking.php';
+});
+
 return $router;
