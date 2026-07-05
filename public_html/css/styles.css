@@ -246,6 +246,22 @@ a {
     line-height: 1.35;
 }
 
+.booking-modal-back-btn {
+    margin-top: var(--space-3);
+    min-height: 42px;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: linear-gradient(180deg, var(--brand-600), var(--brand-700));
+    color: var(--paper);
+    font-weight: 700;
+    padding: 0.55rem 1rem;
+    cursor: pointer;
+}
+
+.booking-modal-back-btn:hover {
+    filter: brightness(1.04);
+}
+
 .booking-form-wrap {
     padding: var(--space-4);
 }

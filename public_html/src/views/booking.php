@@ -25,7 +25,8 @@ $availableCars = [
         <section class="container booking-shell card">
             <div class="booking-modal" role="alertdialog" aria-modal="true" aria-labelledby="booking-modal-title">
                 <div class="booking-modal-panel">
-                    <h1 id="booking-modal-title" class="booking-modal-title">At the moment we don't have any avalible cars.</h1>
+                    <h1 id="booking-modal-title" class="booking-modal-title">At the moment we don't have any available cars.</h1>
+                    <button type="button" class="booking-modal-back-btn" onclick="window.history.back()">Go back</button>
                 </div>
             </div>
 
