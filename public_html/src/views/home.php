@@ -51,8 +51,8 @@
                         <input
                             type="text"
                             name="pickup_location"
-                            placeholder="City, airport, station..."
-                            autocomplete="off"
+                            value="Antwerpen"
+                            readonly
                         />
                     </div>
 
