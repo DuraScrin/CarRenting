@@ -12,7 +12,6 @@ After running the script, you get:
 Both include:
 
 - `public_html/`
-- `src/`
 - `database/`
 - `.env.example` (if present)
 - `composer.json` (if present)
@@ -45,4 +44,4 @@ The zip contains the **contents of `public_html` only** (no wrapper folder), so 
 1. Extract `duraride-shared-hosting.zip` locally.
 2. Upload the content of `duraride-package/` to your hosting account root.
 3. Ensure `public_html/` is the domain document root.
-4. Keep `src/` and `database/` outside the public web root.
+4. Keep `database/` outside the public web root.

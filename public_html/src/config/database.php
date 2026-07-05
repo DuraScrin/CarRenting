@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost'; // Database host
+$host = 'lqut.your-database.de'; // Remote database host
 $dbname = 'car_rental'; // Database name
-$username = 'root'; // Database username
-$password = ''; // Database password
+$username = 'randymarsh'; // Remote database username
+$password = 'y2)X;7{(c}E$'; // Remote database password
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
