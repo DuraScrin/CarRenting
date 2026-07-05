@@ -60,6 +60,64 @@ car-rental-app
 - Users can register, log in, view available cars, and make bookings.
 - Administrators can manage users and car inventory through the admin dashboard.
 
+## Anonymous Analytics (Database)
+
+The database schema now includes anonymous analytics tracking designed to avoid personal data storage.
+
+- Tracks: page visits, page popularity, button clicks, and popular cars.
+- Does not store: name, email, phone, raw IP address, or raw user-agent.
+- Uses only hashes: `session_hash` and `client_fingerprint_hash`.
+
+### Event names
+
+- `page_view`
+- `button_click`
+- `car_view`
+- `car_book_click`
+- `booking_submit_attempt`
+
+### Quick verification SQL
+
+After applying `database/schema.sql`, run the sample inserts below and query the analytics views.
+
+```sql
+INSERT INTO analytics_events (
+   event_name,
+   page_path,
+   target_type,
+   target_identifier,
+   car_id,
+   session_hash,
+   client_fingerprint_hash,
+   metadata_json
+) VALUES
+('page_view', '/cars', NULL, NULL, NULL,
+ 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+ '1111111111111111111111111111111111111111111111111111111111111111',
+ '{"source":"direct"}'),
+('page_view', '/car?car=ford-mustang', 'car', 'ford-mustang', 1,
+ 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+ '1111111111111111111111111111111111111111111111111111111111111111',
+ '{"from":"cars_list"}'),
+('car_view', '/car?car=ford-mustang', 'car', 'ford-mustang', 1,
+ 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+ '1111111111111111111111111111111111111111111111111111111111111111',
+ '{"section":"details"}'),
+('button_click', '/cars', 'button', 'view_details_ford-mustang', 1,
+ 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+ '2222222222222222222222222222222222222222222222222222222222222222',
+ '{"position":"card"}'),
+('car_book_click', '/car?car=ford-mustang', 'button', 'book_now', 1,
+ 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+ '2222222222222222222222222222222222222222222222222222222222222222',
+ '{"cta":"primary"}');
+
+SELECT * FROM analytics_daily_visitors ORDER BY visit_date DESC;
+SELECT * FROM analytics_page_popularity ORDER BY views_count DESC;
+SELECT * FROM analytics_button_clicks ORDER BY clicks_count DESC;
+SELECT * FROM analytics_popular_cars ORDER BY popularity_score DESC;
+```
+
 ## Shared Hosting / FTP Layout
 
 This project now includes a `public_html` folder for shared hosting. Upload the project so the hosting account looks like this:

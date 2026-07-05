@@ -74,7 +74,11 @@ usort($cars, static function (array $left, array $right): int {
             <?php if (!empty($cars)): ?>
                 <div class="cars-list">
                     <?php foreach ($cars as $car): ?>
-                        <a class="cars-list-item card" href="<?php echo htmlspecialchars($car['detailsUrl'], ENT_QUOTES, 'UTF-8'); ?>">
+                                <a class="cars-list-item card"
+                                    href="<?php echo htmlspecialchars($car['detailsUrl'], ENT_QUOTES, 'UTF-8'); ?>"
+                                    data-track-event="button_click"
+                                    data-track-type="car"
+                                    data-track-id="<?php echo htmlspecialchars($car['slug'], ENT_QUOTES, 'UTF-8'); ?>">
                             <img class="cars-list-thumb" src="<?php echo htmlspecialchars($car['webPath'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($car['title'], ENT_QUOTES, 'UTF-8'); ?>">
                             <div class="cars-list-body">
                                 <h2><?php echo htmlspecialchars($car['title'], ENT_QUOTES, 'UTF-8'); ?></h2>
