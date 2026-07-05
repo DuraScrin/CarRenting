@@ -9,7 +9,7 @@
 <body>
     <?php include __DIR__ . '/layouts/header.php'; ?>
     <?php
-    $imageDirectory = __DIR__ . '/../../public/images';
+    $imageDirectory = __DIR__ . '/../../public_html/images';
     $imagePatterns = ['*.jpg', '*.jpeg', '*.png', '*.webp', '*.gif'];
     $carImages = [];
 
@@ -112,7 +112,7 @@
                 </div>
             <?php else: ?>
                 <div class="card empty-gallery">
-                    <p>No car images found yet. Upload images to <code>public/images</code> to show them here.</p>
+                    <p>No car images found yet. Upload images to <code>public_html/images</code> to show them here.</p>
                 </div>
             <?php endif; ?>
         </section>
