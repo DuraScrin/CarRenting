@@ -5,8 +5,6 @@
             <a href="/">Home</a>
             <a href="/cars">Cars</a>
             <a href="/booking">Booking</a>
-            <a href="/login">Login</a>
-            <a href="/admin">Admin</a>
         </nav>
     </div>
 </header>
