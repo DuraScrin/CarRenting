@@ -85,7 +85,7 @@
                         </select>
                     </div>
 
-                    <button type="submit">
+                    <button type="submit" data-track-event="button_click" data-track-type="search" data-track-id="search_availability">
                         Search
                     </button>
                 </form>
@@ -105,7 +105,11 @@
                         $slug = pathinfo($car['file'], PATHINFO_FILENAME);
                         $carUrl = '/car?car=' . rawurlencode($slug);
                         ?>
-                        <a class="car-card-link" href="<?php echo htmlspecialchars($carUrl, ENT_QUOTES, 'UTF-8'); ?>">
+                                <a class="car-card-link"
+                                    href="<?php echo htmlspecialchars($carUrl, ENT_QUOTES, 'UTF-8'); ?>"
+                                    data-track-event="button_click"
+                                    data-track-type="car"
+                                    data-track-id="<?php echo htmlspecialchars($slug, ENT_QUOTES, 'UTF-8'); ?>">
                             <article class="car-card card">
                                 <div class="car-card-media">
                                     <img src="<?php echo htmlspecialchars($car['webPath'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>">

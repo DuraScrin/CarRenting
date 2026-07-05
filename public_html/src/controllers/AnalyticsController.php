@@ -98,8 +98,8 @@ final class AnalyticsController
             }
 
             $statement = $pdo->prepare(
-                'INSERT INTO analytics_events (event_name, page_path, target_type, target_identifier, car_id, session_hash, client_fingerprint_hash, metadata_json)
-                 VALUES (:event_name, :page_path, :target_type, :target_identifier, :car_id, :session_hash, :client_fingerprint_hash, :metadata_json)'
+                 'INSERT INTO analytics_events (event_name, page_path, target_type, target_identifier, car_id, session_hash, client_fingerprint_hash, visitor_key, client_ip, metadata_json)
+                  VALUES (:event_name, :page_path, :target_type, :target_identifier, :car_id, :session_hash, :client_fingerprint_hash, :visitor_key, :client_ip, :metadata_json)'
             );
 
             $statement->execute([
@@ -110,6 +110,8 @@ final class AnalyticsController
                 ':car_id' => $event['car_id'],
                 ':session_hash' => self::sessionHash(),
                 ':client_fingerprint_hash' => self::clientFingerprintHash(),
+                ':visitor_key' => self::visitorKey(),
+                ':client_ip' => self::clientIp(),
                 ':metadata_json' => $metadataJson,
             ]);
         } catch (Throwable $exception) {
@@ -143,6 +145,26 @@ final class AnalyticsController
         $ip = (string) ($_SERVER['REMOTE_ADDR'] ?? '');
         $userAgent = (string) ($_SERVER['HTTP_USER_AGENT'] ?? '');
         return hash('sha256', 'fingerprint:' . $ip . '|' . $userAgent);
+    }
+
+    private static function visitorKey(): string
+    {
+        $ip = self::clientIp();
+        if ($ip === null) {
+            return self::clientFingerprintHash();
+        }
+
+        return hash('sha256', 'visitor:' . $ip);
+    }
+
+    private static function clientIp(): ?string
+    {
+        $ip = (string) ($_SERVER['REMOTE_ADDR'] ?? '');
+        if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
+            return null;
+        }
+
+        return $ip;
     }
 
     private static function normalizePath(string $value): string

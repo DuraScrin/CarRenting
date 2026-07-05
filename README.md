@@ -60,13 +60,13 @@ car-rental-app
 - Users can register, log in, view available cars, and make bookings.
 - Administrators can manage users and car inventory through the admin dashboard.
 
-## Anonymous Analytics (Database)
+## Analytics (Per User)
 
-The database schema now includes anonymous analytics tracking designed to avoid personal data storage.
+The database schema now includes per-user analytics tracking (visitor-level) so you can inspect events by user identity.
 
-- Tracks: page visits, page popularity, button clicks, and popular cars.
-- Does not store: name, email, phone, raw IP address, or raw user-agent.
-- Uses only hashes: `session_hash` and `client_fingerprint_hash`.
+- Tracks: page visits, page popularity, button clicks, popular cars, and events per visitor.
+- Stores visitor-level identity fields: `visitor_key` (stable hash), `session_hash`, and `client_ip`.
+- Does not store: name, email, phone, or other form personal fields in analytics metadata.
 
 ### Event names
 
@@ -116,6 +116,8 @@ SELECT * FROM analytics_daily_visitors ORDER BY visit_date DESC;
 SELECT * FROM analytics_page_popularity ORDER BY views_count DESC;
 SELECT * FROM analytics_button_clicks ORDER BY clicks_count DESC;
 SELECT * FROM analytics_popular_cars ORDER BY popularity_score DESC;
+SELECT * FROM analytics_user_summary ORDER BY total_events DESC;
+SELECT * FROM analytics_events_per_user ORDER BY last_seen_at DESC;
 ```
 
 ## Shared Hosting / FTP Layout

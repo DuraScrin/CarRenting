@@ -88,6 +88,14 @@ $pageTitle = $selectedCar ? $selectedCar['title'] . ' Details' : 'Car Details';
                     <span class="car-status-badge is-unavailable">Unavailable</span>
                 </div>
 
+                <p>
+                    <a href="/booking?car=<?php echo rawurlencode($selectedCar['slug']); ?>"
+                       class="booking-modal-back-btn"
+                       data-track-event="car_book_click"
+                       data-track-type="car"
+                       data-track-id="<?php echo htmlspecialchars($selectedCar['slug'], ENT_QUOTES, 'UTF-8'); ?>">Book this car</a>
+                </p>
+
                 <?php if (!empty($selectedCar['blueprints'])): ?>
                     <section class="detail-blueprints">
                         <h2 class="section-title">Blueprints</h2>

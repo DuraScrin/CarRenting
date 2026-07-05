@@ -60,13 +60,16 @@
         var bookingForm = document.querySelector('.booking-request-form');
         if (bookingForm) {
             bookingForm.addEventListener('submit', function () {
+                var carSelect = bookingForm.querySelector('select[name="car_id"]');
+                var selectedCar = carSelect ? carSelect.value : '';
                 sendEvent({
                     event_name: 'booking_submit_attempt',
                     page_path: window.location.pathname + window.location.search,
                     target_type: 'form',
                     target_identifier: 'booking-request-form',
                     metadata: {
-                        source: 'booking_submit'
+                        source: 'booking_submit',
+                        selected_car: truncate(selectedCar || 'unknown', 100)
                     }
                 });
             });
